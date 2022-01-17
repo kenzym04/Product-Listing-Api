@@ -3,70 +3,29 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const cors = require('cors')
+
+app.use(cors())
+app.options('*', cors())
 
 //List of middleware
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
 
-const productSchema = mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-  },
-  name: String,
-  description: String,
-  type: String,
-  category: String,
-  quantity: Number,
-  manufacturer: String,
-  distributor: String,
-  unitCost: {
-    type: Number,
-    required: true,
-  },
-})
-
 require('dotenv/config')
 
-const Product = mongoose.model('Product', productSchema)
+//The Routes
+const categoriesRoutes = require('./routes/categories')
+const productsRoutes = require('./routes/products')
+const usersRoutes = require('./routes/users')
+const ordersRoutes = require('./routes/orders')
 
 const api = process.env.API_URL
 
-// Product Get request http://localhost:3000/api/v1/products
-app.get(`${api}/products`, async (req, res) => {
-  const productList = await Product.find()
-  if (!productList) {
-    res.status(500).json({ success: false })
-  }
-  res.send(productList)
-})
-
-//Product Post request http://localhost:3000/api/v1/products
-app.post(`${api}/products`, (req, res) => {
-  const product = new Product({
-    id: req.body.id,
-    name: req.body.name,
-    description: req.body.description,
-    type: req.body.type,
-    category: req.body.category,
-    quantity: req.body.quantity,
-    manufacturer: req.body.manufacturer,
-    distributor: req.body.distributor,
-    unitCost: req.body.unitCost,
-  })
-
-  product
-    .save()
-    .then((createdProduct) => {
-      res.status(201).json(createdProduct)
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: err,
-        success: false,
-      })
-    })
-})
+app.use(`${api}/categories`, categoriesRoutes)
+app.use(`${api}/products`, productsRoutes)
+app.use(`${api}/users`, usersRoutes)
+app.use(`${api}/orders`, ordersRoutes)
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
