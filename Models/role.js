@@ -6,4 +6,4 @@ const rolesSchema = mongoose.Schema({
   description: { type: String },
 })
 
-exports.Category = mongoose.model('Category', rolesSchema)
+exports.Role = mongoose.model('Role', rolesSchema)

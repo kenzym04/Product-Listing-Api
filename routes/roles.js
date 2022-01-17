@@ -1,9 +1,9 @@
-const { Roles } = require('../Models/roles')
+const { Role } = require('../Models/role')
 const express = require('express')
 const router = express.Router()
 
 router.get(`/`, async (req, res) => {
-  const rolesList = await Roles.find()
+  const rolesList = await Role.find()
 
   if (!rolesList) {
     res.status(500).json({ success: false })
