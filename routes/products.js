@@ -73,7 +73,6 @@ router.put('/:id', async (req, res) => {
   )
 
   if (!product) return res.status(500).send('Cannot update product!')
-
   res.send(product)
 })
 
