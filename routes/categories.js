@@ -15,9 +15,7 @@ router.get('/:id', async (req, res) => {
   const category = await Category.findById(req.params.id)
 
   if (!category) {
-    res
-      .status(500)
-      .json({ message: 'the category with the given ID not found' })
+    res.status(500).json({ message: 'No category found matchng that id!' })
   }
   res.status(200).send(category)
 })
@@ -57,7 +55,7 @@ router.delete('/:id', (req, res) => {
       if (category) {
         return res
           .status(200)
-          .json({ success: true, message: 'Category deleted!' })
+          .json({ success: true, message: 'Category deleted sucessfully' })
       } else {
         return res
           .status(404)
