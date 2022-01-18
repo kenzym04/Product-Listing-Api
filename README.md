@@ -25,7 +25,7 @@ POST     /api/v1/users/register
 
 #### Login user
 
-To login the user and get the auth token you can use:
+Login & Auth token :
 
 ```
 POST     /api/v1/users/login
@@ -39,7 +39,6 @@ GET      /api/v1/users/:id
 POST     /api/v1/users
 PUT      /api/v1/users/:id
 DELETE   /api/v1/users/:id
-GET users count: /api/v1/users/get/count
 ```
 
 # Routes
@@ -52,16 +51,14 @@ GET      /api/v1/products/:id
 POST     /api/v1/products
 PUT      /api/v1/products/:id
 DELETE   /api/v1/products/:id
-GET featured products: /api/v1/products/get/featured/:count
-GET products count: /api/v1/products/get/count
 ```
 
 ### Categories
 
 ```
-GET      /api/v1/catgories
-GET      /api/v1/categories/:id
-POST     /api/v1/categories
-PUT      /api/v1/categories/:id
-DELETE   /api/v1/categories/:id
+GET      /api/v1/roles
+GET      /api/v1/roles/:id
+POST     /api/v1/roles
+PUT      /api/v1/roles/:id
+DELETE   /api/v1/roles/:id
 ```
