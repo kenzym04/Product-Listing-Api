@@ -53,7 +53,7 @@ PUT      /api/v1/products/:id
 DELETE   /api/v1/products/:id
 ```
 
-### Categories
+### Roles
 
 ```
 GET      /api/v1/roles
