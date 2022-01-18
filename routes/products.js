@@ -1,15 +1,15 @@
 const { Product } = require('../models/product')
 const express = require('express')
 const router = express.Router()
-const { Category } = require('../models/category')
+const { Role } = require('../models/role')
 const mongoose = require('mongoose')
 
 router.get(`/`, async (req, res) => {
   let filter = {}
-  if (req.query.categories) {
-    filter = { category: req.query.categories.split(',') }
+  if (req.query.roles) {
+    filter = { role: req.query.roles.split(',') }
   }
-  const productList = await await Product.find(filter).populate('category')
+  const productList = await await Product.find(filter).populate('role')
 
   if (!productList) {
     res.status(500).json({ success: false })
@@ -18,7 +18,7 @@ router.get(`/`, async (req, res) => {
 })
 
 router.get(`/:id`, async (req, res) => {
-  const product = await Product.findById(req.params.id).populate('category')
+  const product = await Product.findById(req.params.id).populate('role')
 
   if (!product) {
     res.status(500).json({ success: false })
@@ -27,15 +27,15 @@ router.get(`/:id`, async (req, res) => {
 })
 
 router.post(`/`, async (req, res) => {
-  const category = await Category.findById(req.body.category)
-  if (!category) return res.status(400).send('Invalid Category')
+  const role = await Role.findById(req.body.role)
+  if (!role) return res.status(400).send('Invalid role')
 
   let product = new Product({
     Id: req.body.id,
     name: req.body.name,
     description: req.body.description,
     type: req.body.type,
-    category: req.body.category,
+    role: req.body.role,
     quantity: req.body.quantity,
     manufacturer: req.body.manufacturer,
     distributor: req.body.distributor,
@@ -53,8 +53,8 @@ router.put('/:id', async (req, res) => {
   if (!mongoose.isValidObjectId(req.params.id)) {
     return res.status(400).send('Invalid product id!')
   }
-  const category = await Category.findById(req.body.category)
-  if (!category) return res.status(400).send('Invalid category')
+  const role = await Role.findById(req.body.role)
+  if (!role) return res.status(400).send('Invalid role')
 
   const product = await Product.findByIdAndUpdate(
     req.params.id,
@@ -63,7 +63,7 @@ router.put('/:id', async (req, res) => {
       name: req.body.name,
       description: req.body.description,
       type: req.body.type,
-      category: req.body.category,
+      role: req.body.role,
       quantity: req.body.quantity,
       manufacturer: req.body.manufacturer,
       distributor: req.body.distributor,
