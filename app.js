@@ -18,13 +18,14 @@ app.use(authJwt())
 app.use(errorHandler)
 
 //The Routes
+const categoriesRoutes = require("./routes/categories");
 const productsRoutes = require('./routes/products')
 const usersRoutes = require('./routes/users')
 const ordersRoutes = require('./routes/orders')
 const rolesRoutes = require('./routes/roles')
 
 const api = process.env.API_URL
-
+app.use(`${api}/categories`, categoriesRoutes);
 app.use(`${api}/products`, productsRoutes)
 app.use(`${api}/users`, usersRoutes)
 app.use(`${api}/orders`, ordersRoutes)
@@ -37,7 +38,7 @@ mongoose
     dbName: 'productlistingstore-database',
   })
   .then(() => {
-    console.log('Database is ready to connect')
+    console.log('Database connected successfully')
   })
   .catch((err) => {
     console.log(err)
