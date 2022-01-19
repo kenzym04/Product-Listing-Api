@@ -1,69 +1,84 @@
-#Product Listing Ecommerce REST API
+# Product Listing Ecommerce REST API
 
-Product Listing Ecommerce REST API implented with NodeJS, Express and MongoDb.
+Product Listing Ecommerce REST API implemented with;
 
-*NB: I didn't filter out the .env file for evaluation purposes, otherwise it shouldn't be there (Db used is a temporary one time database)*
+```
+•	NodeJS v14.7.3
+•	  "dependencies": {
+•	    "bcryptjs": "^2.4.3",
+•	    "body-parser": "^1.19.1",
+•	    "cors": "^2.8.5",
+•	    "dotenv": "^14.1.0",
+•	    "express": "^4.17.2",
+•	    "express-jwt": "^6.1.0",
+•	    "jsonwebtoken": "^8.5.1",
+•	    "mongoose": "^6.1.6",
+•	    "morgan": "^1.10.0",
+•	    "nodemon": "^2.0.15"
+```
+
+_NB: I didn't filter out the .env file for evaluation purposes, otherwise it shouldn't be there (Db used is a temporary one time database)_
 
 # How to Run the REST API
 
-### Install
+## Install
+
+Install NodeJS then cd to project directory
 
 ```
 npm install
 ```
 
-### To Start the API
+To Start the API
 
 ```
 npm start
-
 ```
 
-#### Register new user
+## Register new user
 
 ```
-POST     /api/v1/users/register
+POST     /api/v1/auth/register         Registers new user
 ```
 
-#### Login user
-
-To login the user and get the auth token you can use:
+## Log in User
 
 ```
-POST     /api/v1/users/login
+POST     /api/v1/auth/login            Logs in user
 ```
 
-### Users
+# Users
 
 ```
-GET      /api/v1/users
-GET      /api/v1/users/:id
-POST     /api/v1/users
-PUT      /api/v1/users/:id
-DELETE   /api/v1/users/:id
-GET users count: /api/v1/users/get/count
+GET      /api/v1/users/show		              Retrieves users
+GET      /api/v1/users/show/:id	            Retrieves user's data by id
+POST     /api/v1/users/new		              Creates a new user
+PUT      /api/v1/users/update/:id	          Updates user details and password
+DELETE   /api/v1/users/delete/:id	          Deletes user
 ```
 
-# Routes
-
-### Products
+# Products
 
 ```
-GET      /api/v1/products
-GET      /api/v1/products/:id
-POST     /api/v1/products
-PUT      /api/v1/products/:id
-DELETE   /api/v1/products/:id
-GET featured products: /api/v1/products/get/featured/:count
-GET products count: /api/v1/products/get/count
+GET      /api/v1/products/show	              Retrieves products
+GET      /api/v1/products/show/:id	          Retrieves product's data by id
+POST     /api/v1/products/new	                Creates new product
+PUT      /api/v1/products/update/:id	        Updates product by id
+DELETE   /api/v1/products/delete/:id	        Deletes product by id
 ```
 
-### Categories
+# Roles
 
 ```
-GET      /api/v1/catgories
-GET      /api/v1/categories/:id
-POST     /api/v1/categories
-PUT      /api/v1/categories/:id
-DELETE   /api/v1/categories/:id
+GET      /api/v1/roles/show		          Retrieves roles
+GET      /api/v1/roles/show/:id	        Retrieves role by id
+POST     /api/v1/roles/new		          creates a new role
+PUT      /api/v1/roles/update/:id	      update role by id
+DELETE   /api/v1/roles/delete/:id	      Delete role by id
 ```
+
+## Database – MongoDB (Free version)
+
+## Tests performed on Postman - functional, unit test and integration tests performed
+
+## Project Structure - Model View Controller (MVC)

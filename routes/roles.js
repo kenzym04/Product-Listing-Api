@@ -2,7 +2,7 @@ const { Role } = require('../models/role')
 const express = require('express')
 const router = express.Router()
 
-router.get(`/`, async (req, res) => {
+router.get(`/show`, async (req, res) => {
   const roleList = await Role.find()
 
   if (!roleList) {
@@ -11,7 +11,7 @@ router.get(`/`, async (req, res) => {
   res.send(roleList)
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/show/:id', async (req, res) => {
   const role = await Role.findById(req.params.id)
 
   if (!role) {
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
   res.status(200).send(role)
 })
 
-router.post(`/`, async (req, res) => {
+router.post(`/new`, async (req, res) => {
   let role = new Role({
     id: req.body.id,
     name: req.body.name,
@@ -33,7 +33,7 @@ router.post(`/`, async (req, res) => {
   res.send(role)
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   const role = await Role.findByIdAndUpdate(
     req.params.id,
     {
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
   res.send(role)
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   Role.findByIdAndRemove(req.params.id)
     .then((role) => {
       if (role) {

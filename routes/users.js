@@ -4,7 +4,7 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-router.get(`/`, async (req, res) => {
+router.get(`/show`, async (req, res) => {
   const userList = await User.find().select('-passwordHash')
 
   if (!userList) {
@@ -13,7 +13,7 @@ router.get(`/`, async (req, res) => {
   res.send(userList)
 })
 
-router.get('/:id', async (req, res) => {
+router.get('show/:id', async (req, res) => {
   const user = await User.findById(req.params.id).select('-passwordHash')
 
   if (!user) {
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
   res.status(200).send(user)
 })
 
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
   let user = new User({
     uId: req.body.uId,
     firstName: req.body.firstName,
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
   res.send(user)
 })
 
-router.post('/login', async (req, res) => {
+router.post('/auth/login', async (req, res) => {
   const user = await User.findOne({ email: req.body.email })
   const secret = process.env.secret
 
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
   }
 })
 //To update password
-router.put(':/id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   const userExist = await User.findById(req.params.id)
   let newPassword
   if (req.body.password) {
@@ -88,7 +88,7 @@ router.put(':/id', async (req, res) => {
   res.send(user)
 })
 
-router.post('/register', async (req, res) => {
+router.post('/auth/register', async (req, res) => {
   let user = new User({
     uId: req.body.uId,
     firstName: req.body.firstName,
@@ -105,7 +105,7 @@ router.post('/register', async (req, res) => {
   res.send(user)
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('delete/:id', (req, res) => {
   User.findByIdAndRemove(req.params.id)
     .then((user) => {
       if (user) {
