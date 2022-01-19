@@ -4,7 +4,6 @@ Product Listing Ecommerce REST API implemented with;
 ```
 •	NodeJS v14.7.3
 •	  "dependencies": {
-•	    "bcrypt": "^5.0.1",
 •	    "bcryptjs": "^2.4.3",
 •	    "body-parser": "^1.19.1",
 •	    "cors": "^2.8.5",
@@ -68,5 +67,5 @@ DELETE   /api/v1/roles/:id	            delete roles by id
 ```
 
 ## Database – MongoDB
-## Tests performed on Postman - functional, unit test and integration test performed. Regression test not done or saved!
+## Tests performed on Postman - functional, unit test and integration test performed
 ## Project Structure - Model View Controller (MVC)
