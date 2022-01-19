@@ -2,6 +2,8 @@
 
 Product Listing Ecommerce REST API implented with NodeJS, Express and MongoDb.
 
+*NB: I didn't filter out the .env file for evaluation purposes, otherwise it shouldn't be there (Db used is a temporary one time database)*
+
 # How to Run the REST API
 
 ### Install
