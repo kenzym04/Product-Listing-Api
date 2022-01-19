@@ -98,5 +98,16 @@ router.delete('/:id', (req, res) => {
       return res.status(400).json({ success: false, error: err })
     })
 })
+//gets the products count
+router.get('/get/count', async (req, res) => {
+  const productCount = await Product.countDocuments((count) => count)
+
+  if (!productCount) {
+    res.status(500).json({ success: false })
+  }
+  res.send({
+    productCount: productCount,
+  })
+})
 
 module.exports = router
