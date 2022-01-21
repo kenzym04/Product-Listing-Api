@@ -74,6 +74,4 @@ DELETE   /api/v1/roles/delete/:id	            Delete role by id
 
 Database – MongoDB (Free version)
 
-Tests performed on Postman - functional, unit test and integration tests performed
-
-Project Structure - Model View Controller (MVC)
+Tests performed on Postman
