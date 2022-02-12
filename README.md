@@ -15,8 +15,6 @@ Product Listing Ecommerce REST API implemented with; NodeJS, Express and MongoDb
 •	    "morgan": "^1.10.0",
 •	    "nodemon": "^2.0.15"
 ```
-_NB: I didn't filter out the .env file for evaluation purposes, otherwise it shouldn't be there (Db used is a temporary one time database)_
-
 # How to Run the API
 
 ## Install
